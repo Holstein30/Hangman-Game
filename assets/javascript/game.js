@@ -1,7 +1,9 @@
-// initialized variables
+// initialized variables/booleans/arrays/etc.
 
-guessesLeft = 10;
-wins = 0;
+running = false;
+// guessesLeft = 10;
+correct = false;
+// var characters = [];
 
 // Array of guessable characters
 
@@ -14,47 +16,53 @@ var gods = ['ZUES', 'POSEIDON', 'HADES', 'APOLLO', 'ATLAS', 'APHRODITE', 'ARTEMI
 			'ODIN', 'THOR', 'LOKI', 'TYR', 'FREYA', 'HEIMDALL', 'OSIRIS', 'ISIS',
 			'ANUBIS', 'RA', 'HORUS', 'THOTH', 'MUT'];
 
-// Main function to run game
+// Event to call the newGame function
+
+document.body.addEventListener('keypress', newGame);
+
+// Function for creating a new game and reseting variables
+
+function newGame () {
+	if (running) return;
+	running = true;
+	characters = [];
+	guessesLeft = 10;
+	main();
+}
+
+// Main function for game order and organization
 
 function main () {
 	pick();
 	blanks();
 	userGuess();
-	check();
+}
+
+// Pick a random word from gods array
+
+function pick () {
+	// equation to generate random word from gods array
+	answer = gods[Math.floor(Math.random() * gods.length)];
 	console.log(answer);
-	console.log(blank);
-	console.log(guess);
+}
+
+// Create blank spaces for each character in word
+
+function blanks () {
+	for (i = 0; i < answer.length; i++) {
+		characters.push("__");
+	}
 	console.log(characters);
 }
 
-// Function for random guessable word and array for blank spaces 
-
-function pick() {
-	// equation to generate random word from gods array
-	answer = gods[Math.floor(Math.random() * gods.length)];
-	// split into individual characters to compare to user input
-	characters = answer.split("");
-	// return answer;
-}
-
-// Function to create blank spaces for each character in word
-
-function blanks() {
-	// array for length of answer to get appropriate blank spaces
-	var answerBlanks = new Array(answer.length);
-	// add _ for each character of answer
-	blank = "_" + answerBlanks.join(' _');
-	// return blank;
-}
-
-// Function for user guesses
+// Get guess from user
 
 function userGuess () {
 	// detect which key is pressed
 	var k = event.key;
 	// turn input into uppercase
 	guess = k.toUpperCase(); 
-	return guess;
+	check();
 }
 
 // Check that user entered a valid letter
@@ -66,41 +74,76 @@ function check () {
 				check2();
 				break;
 			}
-			else
-				console.log("Please choose a letter A-Z");
-				userGuess();
+			// else
+			// 	console.log("Please choose a letter A-Z");
+			// 	document.body.addEventListener('keypress', userGuess);
 		}
+	console.log("Please choose a letter A-Z");
+	document.body.addEventListener('keypress', userGuess);
+
 }
 
 // Check if user input matches a letter in answer
 
 function check2 () {
-	for (var i in characters) {
-		character = characters[i];
-		if (character === guess) {
-			console.log("BINGO");
-			
-			userGuess();
-			break;
-		}
-		else
-			if (i = characters) {
-				console.log(guessesLeft - 1);
-			}
-			else 
-				check2();
+	for (var i = 0; i < answer.length; i++) {
+		if (guess === answer[i]) {
+			characters[i] = guess;
+			correct = true;
+			replace();
+			console.log(characters[i]);
+		} 
+	} 
+	if (correct === false){
+		guessesLeft--;
+		console.log(guessesLeft);
+		wrong();
+		console.log(guess);
+		console.log("wrong");
+
 	}
-}
-// Event to start
-function start () {
-	document.body.addEventListener('keypress', main);
+
+	correct = false;
 }
 
-start();
+// Replace matching letters
 
-// // 1 function = 1 task
+function replace () {
+	characters.join(" ");
+	console.log(characters);
+	gameOver();
+}
 
-// boolean to true or false
+// Letters already guessed if wrong
 
+function wrong () {
+	var wrongGuess = [];
+	wrongGuess.push(guess);
+	console.log(wrongGuess);
+	gameOver();
+}
 
+// Determine if the game is over or should continue
+
+function gameOver () {
+	if (guessesLeft === 0) {
+		console.log("You Lose");
+		running = false;
+		console.log("Press any key to restart");
+		document.body.addEventListener('keypress', newGame);
+
+	}
+	else if (characters === answer) {
+		console.log("You Win");
+		wins++;
+		console.log(wins);
+		running = false;
+		console.log("Press any key to restart");
+		document.body.addEventListener('keypress', newGame);
+
+	}
+	else 
+		console.log("Choose another letter");
+		document.body.addEventListener('keypress', userGuess);
+}
 
