@@ -110,7 +110,7 @@ function check2 () {
 function replace () {
 	characters.join(" ");
 	console.log(characters);
-	gameOver();
+	win();
 }
 
 // Letters already guessed if wrong
@@ -122,20 +122,29 @@ function wrong () {
 	gameOver();
 }
 
+
+// Determine if user wins
+
+function win () {
+	for (var i in characters) {
+		if (guess[i] === answer[i]) {
+			console.log("You Win");
+			wins++;
+			console.log(wins);
+			running = false;
+			console.log("Press any key to restart");
+			document.body.addEventListener('keypress', newGame);
+		}
+		else
+			gameOver();
+			break;
+	}
+}
 // Determine if the game is over or should continue
 
 function gameOver () {
 	if (guessesLeft === 0) {
 		console.log("You Lose");
-		running = false;
-		console.log("Press any key to restart");
-		document.body.addEventListener('keypress', newGame);
-
-	}
-	else if (characters === answer) {
-		console.log("You Win");
-		wins++;
-		console.log(wins);
 		running = false;
 		console.log("Press any key to restart");
 		document.body.addEventListener('keypress', newGame);
