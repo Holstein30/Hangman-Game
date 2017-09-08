@@ -111,8 +111,8 @@ function check2 () {
 // Replace matching letters
 
 function replace () {
-	characters.join(" ");
-	document.getElementById("blanks").innerHTML = characters;
+	// characters.join(" ");
+	document.getElementById("blanks").innerHTML = characters.join(" ");
 	console.log(characters);
 	win();
 }
