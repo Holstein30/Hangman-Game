@@ -26,6 +26,7 @@ function newGame () {
 	running = true;
 	characters = [];
 	guessesLeft = 10;
+	wrongGuess = [];
 	main();
 }
 
@@ -51,6 +52,7 @@ function blanks () {
 	for (i = 0; i < answer.length; i++) {
 		characters.push("__");
 	}
+	document.getElementById("blanks").innerHTML = characters;
 	console.log(characters);
 }
 
@@ -95,6 +97,7 @@ function check2 () {
 	} 
 	if (correct === false){
 		guessesLeft--;
+		document.getElementById("guessesLeft").innerHTML = guessesLeft;
 		console.log(guessesLeft);
 		wrong();
 		console.log(guess);
@@ -109,6 +112,7 @@ function check2 () {
 
 function replace () {
 	characters.join(" ");
+	document.getElementById("blanks").innerHTML = characters;
 	console.log(characters);
 	win();
 }
@@ -116,8 +120,8 @@ function replace () {
 // Letters already guessed if wrong
 
 function wrong () {
-	var wrongGuess = [];
 	wrongGuess.push(guess);
+	document.getElementById("guessed").innerHTML = wrongGuess;
 	console.log(wrongGuess);
 	gameOver();
 }
@@ -130,8 +134,10 @@ function win () {
 		if (guess[i] === answer[i]) {
 			console.log("You Win");
 			wins++;
+			document.getElementById("wins").innerHTML = wins;
 			console.log(wins);
 			running = false;
+			alert("YOU WIN! Press any key to restart");
 			console.log("Press any key to restart");
 			document.body.addEventListener('keypress', newGame);
 		}
@@ -140,6 +146,7 @@ function win () {
 			break;
 	}
 }
+
 // Determine if the game is over or should continue
 
 function gameOver () {
