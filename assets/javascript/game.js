@@ -1,9 +1,8 @@
 // initialized variables/booleans/arrays/etc.
 
 running = false;
-// guessesLeft = 10;
 correct = false;
-// var characters = [];
+wins = 0;
 
 // Array of guessable characters
 
