@@ -182,3 +182,11 @@ function gameOver () {
 		document.body.addEventListener('keypress', userGuess);
 }
 
+// KNOWN BUGS
+
+// MOST IMPORTANT: Counts as correct when first letter is a match
+// Doesn't recognize if same letter is guessed twice
+// Can keep entering guesses after game ends until enter is pressed
+// Wins will keep going up if you keep hitting first letter of answer before hitting enter
+// Commas are in between blank spaces until a correct letter is guessed
+
