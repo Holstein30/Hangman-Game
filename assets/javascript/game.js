@@ -54,7 +54,6 @@ function main () {
 function pick () {
 	// equation to generate random word from gods array
 	answer = gods[Math.floor(Math.random() * gods.length)];
-	console.log(answer);
 }
 
 // Create blank spaces for each character in word
@@ -63,7 +62,6 @@ function blanks () {
 	for (i = 0; i < answer.length; i++) {
 		characters.push("__");
 	}
-	console.log(characters);
 	document.getElementById("start").innerHTML = "Choose a letter A-Z";
 }
 
@@ -99,7 +97,6 @@ function check () {
 			// 	console.log("Please choose a letter A-Z");
 			// 	document.body.addEventListener('keypress', userGuess);
 		}
-	console.log("Please choose a letter A-Z");
 	document.body.addEventListener('keypress', userGuess);
 
 }
@@ -112,17 +109,12 @@ function check2 () {
 			characters[i] = guess;
 			correct = true;
 			replace();
-			console.log(characters[i]);
 		} 
 	} 
 	if (correct === false){
 		guessesLeft--;
 		document.getElementById("guessesLeft").innerHTML = guessesLeft;
-		console.log(guessesLeft);
 		wrong();
-		console.log(guess);
-		console.log("wrong");
-
 	}
 
 	correct = false;
@@ -133,7 +125,6 @@ function check2 () {
 function replace () {
 	// characters.join(" ");
 	document.getElementById("blanks").innerHTML = characters.join(" ");
-	console.log(characters);
 	win();
 }
 
@@ -142,7 +133,6 @@ function replace () {
 function wrong () {
 	wrongGuess.push(guess);
 	document.getElementById("guessed").innerHTML = wrongGuess;
-	console.log(wrongGuess);
 	gameOver();
 }
 
@@ -152,10 +142,8 @@ function wrong () {
 function win () {
 	for (var i in characters) {
 		if (guess[i] === answer[i]) {
-			console.log("You Win");
 			wins++;
 			document.getElementById("wins").innerHTML = wins;
-			console.log(wins);
 			running = false;
 			document.getElementById("guessesLeft").innerHTML = "YOU WIN!";
 			document.getElementById("guessed").innerHTML = "Press ENTER to RESTART!";
@@ -170,7 +158,6 @@ function win () {
 
 function gameOver () {
 	if (guessesLeft === 0) {
-		console.log("You Lose");
 		running = false;
 		document.getElementById("guessesLeft").innerHTML = "YOU LOSE :(";
 		document.getElementById("guessed").innerHTML = "Press ENTER to RESTART!";
@@ -178,7 +165,6 @@ function gameOver () {
 
 	}
 	else 
-		console.log("Choose another letter");
 		document.body.addEventListener('keypress', userGuess);
 }
 
