@@ -1,0 +1,22 @@
+body {
+	background-image: url('../images/pyramids.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	text-align: center;
+	font-family: 'Cinzel Decorative', cursive;
+	margin-top: 50px;
+}
+
+.col-12 hr{
+	margin-bottom: 40px;
+}
+hr {
+	width: 400px;
+	border: 2px solid #000;
+	margin-bottom: 30px;
+}
+
+#blanks {
+	font-size: 24px;
+}

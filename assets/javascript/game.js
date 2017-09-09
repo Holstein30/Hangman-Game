@@ -1,4 +1,4 @@
-// initialized variables/booleans/arrays/etc.
+// Initialized variables/booleans/arrays/etc.
 
 running = false;
 correct = false;
