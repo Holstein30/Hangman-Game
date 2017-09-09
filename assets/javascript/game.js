@@ -15,11 +15,21 @@ var gods = ['ZUES', 'POSEIDON', 'HADES', 'APOLLO', 'ATLAS', 'APHRODITE', 'ARTEMI
 			'ODIN', 'THOR', 'LOKI', 'TYR', 'FREYA', 'HEIMDALL', 'OSIRIS', 'ISIS',
 			'ANUBIS', 'RA', 'HORUS', 'THOTH', 'MUT'];
 
-// Event to call the newGame function
+// Alert 
+// Event to start game
 
-document.body.addEventListener('keypress', newGame);
+document.body.addEventListener('keypress', start);
 
-// Function for creating a new game and reseting variables
+// Detect if enter key is pressed to start
+
+function start () {
+	var k = event.keyCode
+	if (k === 13) {
+		newGame();
+	}
+}
+
+// Start new game and reset variables
 
 function newGame () {
 	if (running) return;
@@ -35,6 +45,7 @@ function newGame () {
 function main () {
 	pick();
 	blanks();
+	display();
 	userGuess();
 }
 
@@ -52,8 +63,17 @@ function blanks () {
 	for (i = 0; i < answer.length; i++) {
 		characters.push("__");
 	}
-	document.getElementById("blanks").innerHTML = characters;
 	console.log(characters);
+	document.getElementById("start").innerHTML = "Choose a letter A-Z";
+}
+
+// Display info for user
+
+function display () {
+	document.getElementById("blanks").innerHTML = characters;
+	document.getElementById("guessesLeft").innerHTML = 10;
+	document.getElementById("wins").innerHTML = wins;
+	document.getElementById("guessed").innerHTML = "__";
 }
 
 // Get guess from user
@@ -137,13 +157,12 @@ function win () {
 			document.getElementById("wins").innerHTML = wins;
 			console.log(wins);
 			running = false;
-			alert("YOU WIN! Press any key to restart");
-			console.log("Press any key to restart");
-			document.body.addEventListener('keypress', newGame);
+			document.getElementById("guessesLeft").innerHTML = "YOU WIN!";
+			document.getElementById("guessed").innerHTML = "Press ENTER to RESTART!";
+			document.body.addEventListener('keypress', start);
 		}
 		else
 			gameOver();
-			break;
 	}
 }
 
@@ -153,8 +172,9 @@ function gameOver () {
 	if (guessesLeft === 0) {
 		console.log("You Lose");
 		running = false;
-		console.log("Press any key to restart");
-		document.body.addEventListener('keypress', newGame);
+		document.getElementById("guessesLeft").innerHTML = "YOU LOSE :(";
+		document.getElementById("guessed").innerHTML = "Press ENTER to RESTART!";
+		document.body.addEventListener('keypress', start);
 
 	}
 	else 
