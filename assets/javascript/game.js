@@ -15,7 +15,7 @@ var gods = ['ZUES', 'POSEIDON', 'HADES', 'APOLLO', 'ATLAS', 'APHRODITE', 'ARTEMI
 			'ODIN', 'THOR', 'LOKI', 'TYR', 'FREYA', 'HEIMDALL', 'OSIRIS', 'ISIS',
 			'ANUBIS', 'RA', 'HORUS', 'THOTH', 'MUT'];
 
-// Alert 
+
 // Event to start game
 
 document.body.addEventListener('keypress', start);
