@@ -141,7 +141,9 @@ function wrong () {
 
 function win () {
 	for (var i in characters) {
-		if (guess[i] === answer[i]) {
+		var right = characters.join("");
+	}
+	if (right === answer) {
 			wins++;
 			document.getElementById("wins").innerHTML = wins;
 			running = false;
@@ -151,7 +153,6 @@ function win () {
 		}
 		else
 			gameOver();
-	}
 }
 
 // Determine if the game is over or should continue
@@ -170,7 +171,6 @@ function gameOver () {
 
 // KNOWN BUGS
 
-// MOST IMPORTANT: Counts as correct when first letter is a match
 // Doesn't recognize if same letter is guessed twice
 // Can keep entering guesses after game ends until enter is pressed
 // Wins will keep going up if you keep hitting first letter of answer before hitting enter
