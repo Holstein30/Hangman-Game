@@ -21,3 +21,10 @@ hr {
 p {
 	font-size: 24px;
 }
+
+@media screen and (max-width: 991px) {
+
+	hr {
+		width: 300px;
+	}
+}
