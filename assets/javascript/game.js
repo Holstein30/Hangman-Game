@@ -1,8 +1,8 @@
 // Initialized variables/booleans/arrays/etc.
-
-running = false;
-correct = false;
-wins = 0;
+*/ Consider a functional programming approach instead of use of global variables */
+let running = false;
+let correct = false;
+let wins = 0;
 
 // Array of guessable characters
 
